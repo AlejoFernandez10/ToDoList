@@ -25,3 +25,8 @@ body {
 ::-webkit-scrollbar{
   width: 0px;
 }
+
+
+.sliders-container{
+  background: rgb(5, 20, 39);
+}

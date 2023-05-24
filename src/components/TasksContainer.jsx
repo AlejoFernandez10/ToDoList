@@ -1,14 +1,11 @@
 'use client'
 
-import React, {Fragment, useState} from 'react'
-
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import React, { useState, useContext} from 'react'
 
 
+import CreateTaskModal from './CreateTaskModal'
+import { Context } from '@/context/TasksContext'
+import TasksCard from './TasksCard'
 
 const weekDays = [
   'Monday', 
@@ -32,114 +29,81 @@ const TasksContainer = () => {
 
 
   const [activeDay, setActiveDay] = useState('Monday')
-  const [activeTime, setActiveTime] = useState('Morning')
+  const [open, setOpen] = useState(false)
+  const [tasks, setTasks] = useContext(Context)
+  
+  
+  const handleModalState = () =>{
+    if(!open ){
+      setOpen(true)     
+    }
+    setTimeout(()=>{
+      setOpen(false)
+    }, 100)
+  }
+  
+  const data = new Date()
 
-
+  const today = [data.getDate(), data.getMonth(), data.getFullYear()].join('/')
+  
 
 
   return (
-    <section className='min-h-screen flex flex-col w-full items-center'>
-      <h1 className='text-3xl pt-20'> Add your tasks </h1>
+    <section className='min-h-screen flex flex-col w-full '>
+      <h1 className='text-3xl pt-20 pb-10 pl-5'> Add your tasks </h1>
 
-      <div className='flex gap-3'>
-
-      <Menu as="div" className="relative inline-block text-left pt-20">
-      <div className='flex flex-col gap-2'>
-        <h3 className='text-lg font-semibold text-gray-300 '>Day</h3>
-        <Menu.Button className="flex justify-between w-full min-w-[130px]  gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 ">
-          {activeDay}
-          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-        </Menu.Button>
-      </div>
-
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md  shadow-2xl  ring-1 ring-black ring-opacity-5 focus:outline-none" style={{backgroundColor:'rgb(20,27,35)'}}>
-          <div className="py-1">
-
-
-              {weekDays.map((day)=>(
-
-            <Menu.Item key={day}>
-              {({ active }) => (
-                <button
-                  onClick={(e)=> e.preventDefault() & setActiveDay(day)}
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-100',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  {day}
-                </button>
-              )}
-           
-          
-            </Menu.Item>
-              ))}
+      <div className='flex flex-col gap-3'>
+      <p className='flex items-center pr-3 self-end text-xs gap-3'>Today: <span className='text-sm'>{today} </span> </p>
+      <div as="div" className=" sliders-container  rounded-2xl pl-5  flex flex-col justify-center text-left pt-5   w-full">
+          <div className='w-full flex justify-between px-2'>
+            <h2 className='mb-7'>Pick a day:</h2>
 
             
+
           </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
+      <div className='w-full flex  gap-5  overflow-x-scroll snap-mandatory '>
 
+        <div className='flex snap-mandatory gap-3' >
 
-    {/* SUN TIME DROPDOWN */}
+        {weekDays.map((day)=>(
 
-    <Menu as="div" className="relative inline-block text-left pt-20">
-      <div className='flex flex-col gap-2'>
+          
+        <button key={day}  onClick={()=> setActiveDay(day) } className={`max-w-[200px]  ${activeDay === day ? 'bg-[#0F172A] text-yellow-500 ring-yellow-500'  : 'ring-gray-300'}  flex justify-center w-full min-w-[130px]   rounded-md bg-transparent px-3.5 py-2.5 text-base font-semibold text-white shadow-sm ring-1 ring-inset  `}>
+          
+          {day}
+          
+        </button>         
 
-         <h3 className='text-lg font-semibold text-gray-300 '>Time</h3>
-        <Menu.Button className="flex justify-between w-full min-w-[130px]  gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 ">
-          {activeTime}
-          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-        </Menu.Button>
+          ))}
+        </div>
+
+        
       </div>
 
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md  shadow-2xl  ring-1 ring-black ring-opacity-5 focus:outline-none" style={{backgroundColor:'rgb(20,27,35)'}}>
-          <div className="py-1">
+    </div>
+      <div className='w-full flex  justify-center gap-2 pt-6'>
 
+        <button className='flex items-center gap-2' onClick={()=> handleModalState()} >
+        <span className='text-4xl text-yellow-400'>+ </span><span className='self-center pt-1 text-lg'>Add task</span>       
 
-              {sunTime.map((time)=>(
+          <CreateTaskModal state={open} activeDay={activeDay} />
+        </button>
+      </div>
 
-            <Menu.Item key={time}>
-              {({ active }) => (
-                <button
-                  onClick={(e)=> e.preventDefault() & setActiveTime(time)}
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-100',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  {time}
-                </button>
-              )}
-           
-          
-            </Menu.Item>
-              ))}
+          <div className='pl-3 pt-4'>
+            Tasks active
 
-            
+            <div className='flex flex-col '> 
+                {tasks[activeDay] &&
+
+                  tasks[activeDay].map((task)=>(
+                    <TasksCard key={task.id}  title={task.title} description={task.description} />
+                  ))
+                }
+            </div>
           </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
+
+    
       </div>
     </section>
   )
