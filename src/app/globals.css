@@ -30,3 +30,11 @@ body {
 .sliders-container{
   background: rgb(5, 20, 39);
 }
+
+.menu-dropdown-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 9999;
+}
+
