@@ -27,7 +27,7 @@ body {
 }
 
 
-.sliders-container{
+.sliders-container, .task-card{
   background: rgb(5, 20, 39);
 }
 

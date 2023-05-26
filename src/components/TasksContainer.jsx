@@ -6,6 +6,10 @@ import React, { useState, useContext} from 'react'
 import CreateTaskModal from './CreateTaskModal'
 import { Context } from '@/context/TasksContext'
 import TasksCard from './TasksCard'
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const weekDays = [
   'Monday', 
@@ -16,13 +20,6 @@ const weekDays = [
   'Saturday',
   'Sunday'
 ]
-
-const sunTime = [
-  'Morning',
-  'Evening',
-  'Night'
-]
-
 
 
 const TasksContainer = () => {
@@ -63,7 +60,7 @@ const TasksContainer = () => {
           </div>
       <div className='w-full flex  gap-5  overflow-x-scroll snap-mandatory '>
 
-        <div className='flex snap-mandatory gap-3' >
+        <div className='flex snap-mandatory gap-3 ' >
 
         {weekDays.map((day)=>(
 
@@ -91,13 +88,13 @@ const TasksContainer = () => {
       </div>
 
           <div className='pl-3 pt-4'>
-            Tasks active
+            <h4 className='text-xl pb-10'>Tasks Active</h4>
 
-            <div className='flex flex-col '> 
+            <div className='w-full max-w-[600px] flex flex-col justify-center items-center gap-4 '> 
                 {tasks[activeDay] &&
 
                   tasks[activeDay].map((task)=>(
-                    <TasksCard key={task.id}  title={task.title} description={task.description} />
+                    <TasksCard key={task.id} id={task.id} activeDay={activeDay}  title={task.title} description={task.description} priority={task.priority} />
                   ))
                 }
             </div>
@@ -105,6 +102,19 @@ const TasksContainer = () => {
 
     
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        />
     </section>
   )
 }

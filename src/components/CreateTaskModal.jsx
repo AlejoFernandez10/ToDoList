@@ -4,8 +4,8 @@ import { Dialog, Transition, Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Context } from '@/context/TasksContext'
 import { XMarkIcon,FlagIcon } from '@heroicons/react/24/outline'
-import { space } from 'postcss/lib/list'
-
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function classNames(...classes) {
@@ -24,7 +24,7 @@ export default function CreateTaskModal( {state, activeDay }) {
 
   const [open, setOpen] = useState(false)
   const [tasks, setTasks] = useContext(Context)
-  const [priority, setPrioriy] = useState('Priority')  
+  const [priority, setPrioriy] = useState('P3')  
   
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -40,21 +40,42 @@ export default function CreateTaskModal( {state, activeDay }) {
     checkmodal()
   }, [state])
 
-
-  const createTask = ()=>{
+ console.log(tasks)
+  const createTask = ()=>{     
+    
+    
     const id = JSON.stringify(Math.random()).slice(2,12)
-    const data = {id,activeDay, title, description}
+    const data = {id,activeDay, title, description, priority}
     
-    
-    setTasks((current)=>{
+    if(title === '' || description === ''){
 
-      const newTaks = {...current}
-      if(newTaks[activeDay]){
-        newTaks[activeDay].push(data)
-      }
+      toast.error('Complete all the fields to add a new task', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
 
-      return newTaks
-    })
+    }else{
+
+      setTasks((current)=>{
+  
+        const newTasks = {...current}
+        if(newTasks[activeDay]){
+          newTasks[activeDay].push(data)
+        }
+  
+        return newTasks
+      })
+
+      setTimeout(()=>{
+          setOpen(false)
+      }, 100)
+    }
   }
 
   const cancelButtonRef = useRef(null)
@@ -146,7 +167,7 @@ export default function CreateTaskModal( {state, activeDay }) {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items   className=" absolute left-0 mt-2 w-36  origin-top-right rounded-md bg-gray-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-700">
-                        <div className="py-1">
+                        <div className="py-1 ">
 
 
                           {priorities.map((pri)=>(
@@ -177,7 +198,7 @@ export default function CreateTaskModal( {state, activeDay }) {
                   <button
                     type="button"
                     className="  justify-center items-center  w-auto rounded-md bg-white ring-gray-300 hover:bg-gray-50  px-3 py-2.5 text-sm font-semibold text-gray-900 shadow-sm  sm:ml-3 sm:w-auto"
-                    onClick={() => createTask() & setOpen(false)}
+                    onClick={() => createTask() }
                   >
                     Add
                   </button>
