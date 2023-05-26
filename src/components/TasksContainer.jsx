@@ -28,6 +28,8 @@ const TasksContainer = () => {
   const [activeDay, setActiveDay] = useState('Monday')
   const [open, setOpen] = useState(false)
   const [tasks, setTasks] = useContext(Context)
+
+
   
   
   const handleModalState = () =>{
@@ -46,26 +48,27 @@ const TasksContainer = () => {
 
 
   return (
-    <section className='min-h-screen flex flex-col w-full '>
-      <h1 className='text-3xl pt-20 pb-10 pl-5'> Add your tasks </h1>
+    <section className='min-h-screen flex flex-col w-full max-w-[1300px] lg:items-start lg:justify-start lg:pb-20 lg:px-5'>
+      <h1 className='text-3xl pt-20 pb-10 pl-5' id='addtasks'> Add your tasks </h1>
 
-      <div className='flex flex-col gap-3'>
       <p className='flex items-center pr-3 self-end text-xs gap-3'>Today: <span className='text-sm'>{today} </span> </p>
-      <div as="div" className=" sliders-container  rounded-2xl pl-5  flex flex-col justify-center text-left pt-5   w-full">
-          <div className='w-full flex justify-between px-2'>
+      <div className='flex flex-col w-full items-center gap-3 lg:flex-row'>
+      <div as="div" className=" sliders-container  rounded-2xl pl-5  flex flex-col justify-start text-left pt-5   w-full lg:max-w-[220px] lg:pl-0">
+        <div>
+          <div className='w-full flex justify-between px-2 lg:pl-4'>
             <h2 className='mb-7'>Pick a day:</h2>
 
             
 
           </div>
-      <div className='w-full flex  gap-5  overflow-x-scroll snap-mandatory '>
+      <div className='w-full flex  gap-5  overflow-x-scroll snap-mandatory lg:flex-col  lg:snap-none  lg:justify-start'>
 
-        <div className='flex snap-mandatory gap-3 ' >
+        <div className='flex snap-mandatory  gap-3 lg:flex-col lg:snap-none lg:justify-start lg:items-center' >
 
         {weekDays.map((day)=>(
 
           
-        <button key={day}  onClick={()=> setActiveDay(day) } className={`max-w-[200px]  ${activeDay === day ? 'bg-[#0F172A] text-yellow-500 ring-yellow-500'  : 'ring-gray-300'}  flex justify-center w-full min-w-[130px]   rounded-md bg-transparent px-3.5 py-2.5 text-base font-semibold text-white shadow-sm ring-1 ring-inset  `}>
+        <button key={day}  onClick={()=> setActiveDay(day) } className={`max-w-[200px]  ${activeDay === day ? 'bg-[#0F172A] text-yellow-500 ring-yellow-500'  : 'ring-gray-300'}  flex justify-center w-full min-w-[130px]   rounded-md bg-transparent px-3.5 py-2.5 text-base font-semibold text-gray-200 shadow-sm ring-1 ring-inset  `}>
           
           {day}
           
@@ -74,23 +77,28 @@ const TasksContainer = () => {
           ))}
         </div>
 
+        </div>
+
         
       </div>
 
     </div>
-      <div className='w-full flex  justify-center gap-2 pt-6'>
 
-        <button className='flex items-center gap-2' onClick={()=> handleModalState()} >
+      <div className='w-full self-start flex   items-center justify-start gap-2  flex-col pt-6 '>
+
+          <div className=' justify-self-start'>
+
+        <button className='flex items-center  gap-2' onClick={()=> handleModalState()} >
         <span className='text-4xl text-yellow-400'>+ </span><span className='self-center pt-1 text-lg'>Add task</span>       
 
           <CreateTaskModal state={open} activeDay={activeDay} />
         </button>
-      </div>
+          </div>
+          <div className='pl-3 pt-4 flex flex-col w-full items-center justify-center '>
+            
 
-          <div className='pl-3 pt-4'>
-            <h4 className='text-xl pb-10'>Tasks Active</h4>
-
-            <div className='w-full max-w-[600px] flex flex-col justify-center items-center gap-4 '> 
+            <div className='w-full  m-auto grid grid-cols-1 place-items-center md:place-items-start md:grid-cols-2 lg:grid-cols-3  gap-4 '>
+               
                 {tasks[activeDay] &&
 
                   tasks[activeDay].map((task)=>(
@@ -99,6 +107,8 @@ const TasksContainer = () => {
                 }
             </div>
           </div>
+      </div>
+
 
     
       </div>

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '../components/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 import TasksContext from '@/context/TasksContext'
+import Link from 'next/link'
 
 
 export const metadata = {
@@ -22,7 +23,8 @@ export default function RootLayout({ children }) {
           {children}
 
         </TasksContext>
-        
+
+          <footer className='w-full bg-gray-900 text-gray-400 text-center pb-5 pt-5'>Developed by <Link href={'https://www.linkedin.com/in/alejo-fernandez-23821b243/'} target='_blank' className='text-gray-50' >Alejo Fernandez</Link></footer>
         </body>
     </html>
   )

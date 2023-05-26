@@ -40,7 +40,7 @@ export default function CreateTaskModal( {state, activeDay }) {
     checkmodal()
   }, [state])
 
- console.log(tasks)
+ 
   const createTask = ()=>{     
     
     
@@ -121,14 +121,14 @@ export default function CreateTaskModal( {state, activeDay }) {
                         <div>
 
                           
-                          <input type="text" name='title' onChange={(e)=> setTitle(e.target.value)} placeholder='Title'  className="text-base   pl-3 w-full min-w-[250px] text-gray-300 border border-gray-400 sm:border-none rounded-[5px] py-1.5 bg-transparent"/>   
+                          <input type="text" name='title' onChange={(e)=> setTitle(e.target.value)} placeholder='Title'  className="text-base   pl-3 w-full min-w-[250px] text-gray-300 border border-gray-500  rounded-[5px] py-1.5 bg-transparent"/>   
                         
                         </div>
 
                         <div>
 
                           
-                          <textarea name='desc' onChange={(e)=> setDescription(e.target.value)} placeholder='Description' className="text-sm w-full min-w-[250px] pl-3  text-gray-300 border border-gray-400 sm:border-none rounded-md py-1.5 bg-transparent"/>
+                          <textarea name='desc' onChange={(e)=> setDescription(e.target.value)} placeholder='Description' className="text-sm w-full min-w-[250px] pl-3  text-gray-300 border border-gray-500  rounded-md py-1.5 bg-transparent"/>
                         
                         </div>
 
