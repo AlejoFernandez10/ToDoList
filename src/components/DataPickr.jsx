@@ -5,7 +5,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 require("flatpickr/dist/themes/dark.css");
 import { ActiveDayContext, Context } from '@/context/TasksContext';
-
+import {AiOutlineCalendar} from 'react-icons/ai'
 
 
 const DatePicker = () => {
@@ -24,9 +24,11 @@ const DatePicker = () => {
       altFormat: "F j, Y",  
       dateFormat: "Y-m-d",
       
+      
 
       onChange: (selectedDates) => {
         const date = [selectedDates[0].getDate(), selectedDates[0].getMonth(), selectedDates[0].getFullYear()].join('/')
+        
         setDateSelected(date || null);
         
           setTasks((current) =>{
@@ -54,18 +56,18 @@ const DatePicker = () => {
   
 
   return (
-    <>
+    
+
     <input
       type="text"
       ref={datePickerRef}      
       placeholder="Select a date"
       
-      className='bg-transparent border border-gray-500 px-3 py-1.5 rounded-lg text-sm'
+      className='bg-transparent border border-gray-500 px-3 py-1.5 rounded-lg text-base w-full max-w-[300px] sm:max-w-[220px] text-white'
     />
 
-    
-    
-    </>
+      
+   
   );
 };
 

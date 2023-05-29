@@ -51,7 +51,7 @@ export default function CreateTaskModal( {state, activeDay }) {
 
       toast.error('Complete all the fields to add a new task', {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -72,11 +72,16 @@ export default function CreateTaskModal( {state, activeDay }) {
         return newTasks
       })
 
+      setTitle('')
+      setDescription('')
+
       setTimeout(()=>{
           setOpen(false)
       }, 100)
     }
   }
+
+  
 
   const cancelButtonRef = useRef(null)
 
@@ -198,7 +203,7 @@ export default function CreateTaskModal( {state, activeDay }) {
                   <button
                     type="button"
                     className="  justify-center items-center  w-auto rounded-md bg-white ring-gray-300 hover:bg-gray-50  px-3 py-2.5 text-sm font-semibold text-gray-900 shadow-sm  sm:ml-3 sm:w-auto"
-                    onClick={() => createTask() }
+                    onClick={() => createTask()  }
                   >
                     Add
                   </button>

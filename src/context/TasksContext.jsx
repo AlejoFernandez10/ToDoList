@@ -6,7 +6,10 @@ export const Context = createContext({});
 export const ActiveDayContext = createContext('')
 const TasksContext = ({ children }) => {
 
-  const [activeDay, setActiveDay] = useState('Monday')
+  const data = new Date()
+  const today = [data.getDate(), data.getMonth(), data.getFullYear()].join('/')
+
+  const [activeDay, setActiveDay] = useState(today)
   
   const [tasks, setTasks] = useState(() => {
     
@@ -38,6 +41,20 @@ const TasksContext = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
+  
+  useEffect(() => {
+    setTasks((currentTasks) => {
+      const updatedTasks = { ...currentTasks };
+  
+      if (!updatedTasks[today]) {
+        updatedTasks[today] = [];
+      }
+  
+      return updatedTasks;
+    });
+  }, [today]);
+  
+  
 
   return (
     <Context.Provider value={[tasks, setTasks]}>

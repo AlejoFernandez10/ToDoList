@@ -50,13 +50,19 @@ const TasksContainer = () => {
   
 
   return (
-    <section className='min-h-screen flex flex-col w-full max-w-[1300px] lg:items-start lg:justify-start lg:pb-20 lg:px-5'>
-      <h1 className='text-3xl pt-20 pb-10 pl-5' id='addtasks'> Add your tasks </h1>
+    <section className='min-h-screen  flex flex-col w-full max-w-[1300px] lg:items-start lg:justify-start lg:pb-20 lg:px-5'>
+      <h1 className='text-xl pt-20 pb-10 pl-5 text-transparent' id='addtasks'> Add tasks! </h1>
 
-      <div className='flex items-center pr-3 self-end text-xs gap-3'><DatePicker /> </div>
+      <div className='flex flex-col items-center justify-center max-w-[800px] px-5 pb-4 lg:self-end pr-3 w-full lg:max-w-[1030px] sm:flex-row  sm:justify-between text-xs gap-3 '>     
+
+        <p className=' text-sm  sm:text-[21px]'>Day: {activeDay}</p>
+
+        <DatePicker /> 
       
-      <div className='flex flex-col w-full items-center gap-3 lg:flex-row'>
-      <div as="div" className=" sliders-container  rounded-2xl pl-5  flex flex-col justify-start text-left pt-5   w-full lg:max-w-[220px] lg:pl-0">
+      </div>
+      
+      <div className='flex flex-col w-full static min-h-[80vh] items-start gap-3 lg:flex-row'>
+      <div as="div" className=" sliders-container   rounded-2xl pl-5  flex flex-col justify-start text-left pt-5   w-full lg:max-w-[220px] lg:pl-0">
         <div>
           <div className='w-full flex justify-between px-2 lg:pl-4'>
             <h2 className='mb-7'>This week:</h2>
@@ -64,17 +70,20 @@ const TasksContainer = () => {
             
 
           </div>
-      <div className='w-full flex  gap-5  overflow-x-scroll snap-mandatory lg:flex-col  lg:snap-none  lg:justify-start'>
 
-        <div className='flex snap-mandatory  gap-3 lg:flex-col lg:snap-none lg:justify-start lg:items-center' >
+          <div>
+
+      <div className='w-full flex  gap-5  overflow-x-scroll snap-mandatory lg:flex-col  lg:snap-none  lg:justify-start '>
+
+        <div className='flex snap-mandatory  gap-3 lg:flex-col lg:snap-none  lg:justify-start lg:items-center lg:min-h-[370px]' >
 
         {weekDays.map((day) => (
-            <div key={day} className='w-full flex justify-center'>
+            <div key={day} className='w-full flex justify-center  '>
               <button
-                onClick={() => setActiveDay(day)}
-                className={`max-w-[200px]  ${
+                onClick={() => setActiveDay(day) & localStorage.clear()}
+                className={`max-w-[180px]  ${
                   activeDay === day ? 'bg-[#0F172A] text-yellow-500 ring-yellow-500' : 'ring-gray-300'
-                }  flex justify-center w-full min-w-[130px]   rounded-md bg-transparent px-3.5 py-2.5 text-base font-semibold text-gray-200 shadow-sm ring-1 ring-inset  `}
+                }  flex justify-center w-full min-w-[100px]   rounded-md bg-transparent px-3 py-2.5 text-[14px] font-semibold text-gray-200 shadow-sm ring-1 ring-inset  `}
               >
                 {day}
               </button>
@@ -83,13 +92,14 @@ const TasksContainer = () => {
         </div>
 
         </div>
+          </div>
 
         
       </div>
 
     </div>
 
-      <div className='w-full self-start flex   items-center justify-start gap-2  flex-col pt-6 '>
+      <div className='w-full self-start flex   items-center justify-start gap-2  flex-col pt-14 '>
 
           <div className=' justify-self-start'>
 
@@ -122,7 +132,8 @@ const TasksContainer = () => {
 
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={4000}
+        limit={3}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

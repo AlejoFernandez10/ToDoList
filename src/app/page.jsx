@@ -8,7 +8,7 @@ export default function Page() {
 
         <Home />
           
-        <TasksContainer />
+        
 
     </main>
   )
