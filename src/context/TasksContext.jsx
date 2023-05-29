@@ -7,7 +7,7 @@ export const ActiveDayContext = createContext('')
 const TasksContext = ({ children }) => {
 
   const data = new Date()
-  const today = [data.getDate(), data.getMonth(), data.getFullYear()].join('/')
+  const today = [data.getDate(), (data.getMonth() + 1), data.getFullYear()].join('/')
 
   const [activeDay, setActiveDay] = useState(today)
   

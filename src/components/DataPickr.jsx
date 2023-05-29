@@ -27,7 +27,7 @@ const DatePicker = () => {
       
 
       onChange: (selectedDates) => {
-        const date = [selectedDates[0].getDate(), selectedDates[0].getMonth(), selectedDates[0].getFullYear()].join('/')
+        const date = [selectedDates[0].getDate(), (selectedDates[0].getMonth() + 1), selectedDates[0].getFullYear()].join('/')
         
         setDateSelected(date || null);
         
