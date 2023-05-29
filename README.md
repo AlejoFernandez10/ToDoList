@@ -4,6 +4,9 @@
 This is the first version of this To-Do List
 
 
+Developed with Next js and Tailwind css
+
+
 User can:
 
 - Select a day with no specific date to organize that day in particular
