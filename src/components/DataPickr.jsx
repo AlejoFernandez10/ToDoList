@@ -23,7 +23,7 @@ const DatePicker = () => {
       altInput: true,
       altFormat: "F j, Y",  
       dateFormat: "Y-m-d",
-      
+
       
 
       onChange: (selectedDates) => {
@@ -57,18 +57,19 @@ const DatePicker = () => {
 
   return (
     
+    
+    <input type="text" ref={datePickerRef}      
+      placeholder="Select a date"      
+      className='bg-transparent border border-gray-500 px-3 py-1.5 rounded-lg text-base w-full max-w-[300px] sm:max-w-[220px] text-white' data-input /> 
+    
+     
 
-    <input
-      type="text"
-      ref={datePickerRef}      
-      placeholder="Select a date"
-      
-      className='bg-transparent border border-gray-500 px-3 py-1.5 rounded-lg text-base w-full max-w-[300px] sm:max-w-[220px] text-white'
-    />
-
+   
       
    
   );
 };
 
 export default DatePicker;
+
+    
