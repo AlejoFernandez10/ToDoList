@@ -10,6 +10,7 @@ import TasksCard from './TasksCard'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DatePicker from './DataPickr'
+import Filters from './Filters'
 
 
 const weekDays = [
@@ -53,11 +54,13 @@ const TasksContainer = () => {
     <section className='min-h-screen  flex flex-col w-full max-w-[1300px] lg:items-start lg:justify-start lg:pb-20 lg:px-5'>
       <h1 className='text-xl pt-20 pb-10 pl-5 text-transparent' id='addtasks'> Add tasks! </h1>
 
-      <div className='flex flex-col items-center justify-center  px-5 pb-4 lg:self-end pr-3 w-full  sm:flex-row  sm:justify-between text-xs gap-3 '>     
+      <div className='flex flex-col items-center justify-center  px-5 pb-4  pr-3 w-full  sm:flex-row  sm:justify-between text-xs gap-3 '>     
 
         <p className=' text-sm  sm:text-[21px] flex flex-col gap-2 sm:flex-row'><span className='text-xs sm:text-base text-gray-400     '>Active day: </span> {activeDay}</p>
-
-        <DatePicker /> 
+        
+        <DatePicker />
+         
+        <Filters />
       
       </div>
       
