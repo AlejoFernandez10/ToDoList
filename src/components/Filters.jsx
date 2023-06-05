@@ -44,13 +44,13 @@ const Filters = () => {
 
   return (
     <Menu as="div" className="relative inline-block text-left md:pb-6">
-      <div>
-        <label htmlFor="filters" className="text-sm pl-0.5">
+      <div className=''>
+        <label htmlFor="filters" className="text-sm pl-1">
           Filter:
         </label>
         <Menu.Button
           name={'filters'}
-          className="inline-flex w-full min-w-[260px] md:min-w-[165px] justify-between gap-x-1.5 rounded-md text-yellow-400 bg-[#051427] px-3 py-2 text-sm font-semibold text-yelow-400 shadow-sm ring-1 ring-inset ring-gray-500"
+          className="inline-flex w-full sm:max-w-[250px] min-w-[210px] md:min-w-[165px] justify-between gap-x-1.5 rounded-md text-yellow-400 bg-[#051427] px-3 py-2 text-sm font-semibold text-yelow-400 shadow-sm ring-1 ring-inset ring-gray-500"
         >
           {activeFilter}
           <ChevronDownIcon className="-mr-1 h-5 w-5 text-yellow-400" aria-hidden="true" />

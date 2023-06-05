@@ -57,11 +57,14 @@ const DatePicker = () => {
 
   return (
     
-    
-    <input type="text" ref={datePickerRef}      
-      placeholder="Select a date"      
+    <div className='flex flex-col pb-[22px] sm:pt-5 md:pt-0 '>
+    <label htmlFor="dataPickr" className='text-sm'>Date:</label>
+    <input type="text" ref={datePickerRef}
+      name='dataPickr'      
+          
       className='bg-transparent border border-gray-500 px-3 py-1.5 rounded-lg text-base w-full max-w-[300px] sm:max-w-[220px] text-white' data-input /> 
     
+    </div>
      
 
    

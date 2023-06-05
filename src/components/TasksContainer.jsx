@@ -54,9 +54,9 @@ const TasksContainer = () => {
     <section className='min-h-screen  flex flex-col w-full max-w-[1300px] lg:items-start lg:justify-start lg:pb-20 lg:px-5'>
       <h1 className='text-xl pt-20 pb-10 pl-5 text-transparent' id='addtasks'> Add tasks! </h1>
 
-      <div className='flex flex-col items-center justify-center  px-5 pb-4  pr-3 w-full  sm:flex-row  sm:justify-between text-xs gap-3 '>     
+      <div className='flex flex-col items-center justify-center  px-5 pb-4  pr-3 w-full  sm:flex-row sm:items-center  sm:justify-end  text-xs gap-3  '>     
 
-        <p className=' text-sm  sm:text-[21px] flex flex-col gap-2 sm:flex-row'><span className='text-xs sm:text-base text-gray-400     '>Active day: </span> {activeDay}</p>
+        
         
         <DatePicker />
          
@@ -67,10 +67,10 @@ const TasksContainer = () => {
       <div className='flex flex-col w-full static min-h-[80vh] items-start gap-3 lg:flex-row'>
       <div as="div" className=" sliders-container   rounded-2xl pl-5  flex flex-col justify-start text-left pt-5   w-full lg:max-w-[220px] lg:pl-0">
         <div>
-          <div className='w-full flex justify-between px-2 lg:pl-4'>
+          <div className='w-full flex justify-between px-3 pl-4'>
             <h2 className='mb-7'>This week:</h2>
 
-            
+            <p className=' text-sm  sm:text-base flex flex-col  md:flex-col mb-7 '><span className='text-xs sm:text-sm text-gray-400     '>Active day: </span> {activeDay}</p>
 
           </div>
 
@@ -104,7 +104,7 @@ const TasksContainer = () => {
 
       <div className='w-full self-start flex   items-center justify-start gap-2  flex-col pt-14 '>
 
-          <div className=' justify-self-start'>
+          <div className=' justify-self-start md:mr-10'>
 
         <button className='flex items-center  gap-2' onClick={()=> handleModalState()} >
         <span className='text-4xl text-yellow-400'>+ </span><span className='self-center pt-1 text-lg'>Add task</span>       
