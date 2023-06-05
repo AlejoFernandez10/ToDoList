@@ -46,7 +46,7 @@ const Filters = () => {
     <Menu as="div" className="relative inline-block text-left md:pb-6">
       <div className=''>
         <label htmlFor="filters" className="text-sm pl-1">
-          Filter:
+          Order by:
         </label>
         <Menu.Button
           name={'filters'}
