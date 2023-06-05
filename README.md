@@ -16,3 +16,14 @@ User can:
 - Edit tasks
 - Delete tasks
 
+
+
+
+
+
+
+----- VERSION 1.2 -------
+
+- Dashboard layout modified
+
+- Now users can filter tasks by priorities
